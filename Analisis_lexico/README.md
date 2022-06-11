@@ -5,7 +5,7 @@ Este directorio contiene ejercicios en lo relativo al análisis léxico. Cada su
 
 ## cpv
 Analizador léxico que cuenta cuatro tipos de palabras según la distribución de las vocales.
-Implementado en JFLEX y Java.
+Implementado en Java y  JFLEX.
 Estos cuatro grupos; A, B, C, y D son:
 * A: Palabras que tienen al menos dos vocales seguidas y terminan en vocal.
 * B: Palabras que NO tienen dos vocales seguidas y terminan en vocal.
