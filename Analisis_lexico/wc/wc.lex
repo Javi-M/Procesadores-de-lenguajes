@@ -1,7 +1,7 @@
 
 %%
 
-%int
+%int /*Causes the scanning method to be declared as returning Java type int*/
 
 %line /*switches line counting on (yyline)*/
 
@@ -12,5 +12,6 @@
 %}
 
 %%
+
 
 [^] 				{/*Ignorar*/}
