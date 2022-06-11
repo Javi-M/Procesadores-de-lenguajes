@@ -24,7 +24,7 @@ java cpv archivo.txt
 (`archivo.txt` es el archivo que analiza).
 
 ## wc
-Cuenta el número de líneas, palabras y caracteres que hay en un fichero.
+(JFlex y Java) Cuenta el número de líneas, palabras y caracteres que hay en un fichero.
 El programa debe poder compilarse con las instrucciones:
 ```bash
 jflex cpv.lex
@@ -36,6 +36,10 @@ Y debe poder ejecutarse con:
 java wc archivo.txt
 ```
 
+## rmw
+(JFlex y Java) Programa capaz de sustituir todas las variables de un script del Shell (.sh) por su valor.
+
+
 # Sobre el Lexer generado
 Tras que JFlex interprete el archivo *.lex, genera una clase que por defecto se llama Yylex.java, a la que querremos acceder desde el método `main`. 
 
@@ -43,3 +47,7 @@ El objeto que creemos a partir de esta clase tendrá los siguentes métodos:
 * `String yytext()`: devuelve el texto de entrada que ha hecho _match_.
 * `int yylength()`: 
 * `char yycharat(int pos)`: 
+
+
+
+
