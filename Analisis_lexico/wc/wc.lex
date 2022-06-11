@@ -11,11 +11,15 @@
 	public int caracteres = 0;
 %}
 
-palabra = [a-zA-Z]+
+palabra = [a-zA-Z]+ /* ESTA NO ES LA SOLUCION */
+
+
+
+string = [^ \t\n\f\r]+ 
 
 %%
 
-{palabra }			{
+{string}			{
 						palabras++;
 						caracteres += yytext().length();
 					}
