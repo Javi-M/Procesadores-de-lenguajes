@@ -8,7 +8,7 @@ letra 		= [a-zA-Z]
 vocal 		= [aeiouAEIOU]
 consonante 	= [b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z]
 /*La diferencia de conjuntos {letra}--{vocal} da problemas. Mejor evitarlo.*/
-palabra 	= [a-zA-Z]*
+palabra 	= [a-zA-Z]+
 
 %%
 
