@@ -2,4 +2,4 @@ _Las definiciones están basadas en los apuntes, y responden al uso que se hace 
 
 | Término | Definición |
 |:-------:|------------|
-| CABECERA($\alpha$) | Conjunto de símbolos terminales que pueden aparecer a la izquierda (primer símbolo) en alguna forma sentencial derivada de $\alpha$.
+| $CABECERA(\alpha)$ | Conjunto de símbolos terminales que pueden aparecer a la izquierda (primer símbolo) en alguna forma sentencial derivada de $\alpha$.
