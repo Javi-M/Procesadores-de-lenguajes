@@ -1,5 +1,5 @@
-Ejemplos de expresiones regulares en JFlex
- 
+Ejemplos de expresiones regulares **en JFlex**.
+
 | Expresión                               | Reconoce... |
 |:---------------------------------------:|-------------|
 | [a-zA-Z]                                | Letra       |
