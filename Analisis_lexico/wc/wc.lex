@@ -11,7 +11,16 @@
 	public int caracteres = 0;
 %}
 
+palabra = [a-zA-Z]+
+
 %%
 
-
-[^] 				{/*Ignorar*/}
+{palabra }			{
+						palabras++;
+						caracteres += yytext().length();
+					}
+					 
+[^] 				{
+						caracteres++;
+						lineas = yyline+1; // Porque empieza en la linea 0 
+					}
