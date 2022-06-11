@@ -35,3 +35,11 @@ Y debe poder ejecutarse con:
 ```bash
 java wc archivo.txt
 ```
+
+# Sobre el Lexer generado
+Tras que JFlex interprete el archivo *.lex, genera una clase que por defecto se llama Yylex.java, a la que querremos acceder desde el método `main`. 
+
+El objeto que creemos a partir de esta clase tendrá los siguentes métodos:
+* `String yytext()`: devuelve el texto de entrada que ha hecho _match_.
+* `int yylength()`: 
+* `char yycharat(int pos)`: 
