@@ -43,11 +43,11 @@ java wc archivo.txt
 # Sobre el Lexer generado
 Tras que JFlex interprete el archivo *.lex, genera una clase que por defecto se llama Yylex.java, a la que querremos acceder desde el método `main`. 
 
-El objeto que creemos a partir de esta clase tendrá los siguentes métodos:
-* `String yytext()`: devuelve el texto de entrada que ha hecho _match_.
+Los objetos de esta clase tienen los siguentes métodos:
+* `String yytext()`: Devuelve el lexema que se acaba de reconocer (el texto que ha hecho _match_ con una ER).
 * `int yylength()`: 
 * `char yycharat(int pos)`: 
-
+* `int yylex()`: Devuelve un entero, correspondiente al token del lexema reconocido.
 
 
 
