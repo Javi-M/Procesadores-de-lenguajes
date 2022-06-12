@@ -1,7 +1,7 @@
-Ejemplos de expresiones regulares **en JFlex**.
+# Ejemplos de expresiones regulares **en JFlex**.
 
 | Expresión                             | Lexema reconocido    |
-|:-------------------------------------:|----------------------|
+|---------------------------------------|----------------------|
 | [a-zA-Z]                              | Letra                |
 | [aeiouAEIOU]                          | Vocal                |
 | [b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z]      | Consonante           |
@@ -13,7 +13,10 @@ Ejemplos de expresiones regulares **en JFlex**.
 | (.|\n|\r)*                            | Cadena ASCII (del 1 al 127) |
  
 
-# Símbolos especiales
-| Símbolo | Fuera de corchetes                        | En corchetes []     |
-|:-------:|-------------------------------------------|                     |
-| .       |Cualquier caracter excepto el fin de linea | 
+# Caracteres especiales
+* `*` `+` `?` `|` `[` `]` `(` `)` `"` `\` `.` `{` `}` `^` `$` `/` `<`  `>`
+* En corchetes: `-` `\` `^`	
+
+| Caracter | Fuera de corchetes                        | En corchetes [ ]    |
+|----------|-------------------------------------------|---------------------|
+| .        |Cualquier caracter excepto el fin de linea | 
