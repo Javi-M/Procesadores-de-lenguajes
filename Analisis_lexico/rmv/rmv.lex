@@ -5,7 +5,7 @@
 
 EOI = [;|$] 					// End Of Instruction
 
-var	= [_a-zA-Z][_a-zA-Z0-9]* 	// Variable
+nomVar	= [_a-zA-Z][_a-zA-Z0-9]* 	// Nombre de variable
 
 
 %%
