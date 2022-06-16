@@ -14,6 +14,7 @@
  
 
 # Caracteres especiales
+> Para usarlos literalmente, sin su significado especial, hay que poner `\`. Para reconocer el lexema \ usaríamos `\\`.
 * `*` `+` `?` `|` `[` `]` `(` `)` `"` `\` `.` `{` `}` `^` `$` `/` `<`  `>`
 * En corchetes: `-` `\` `^`	
 
