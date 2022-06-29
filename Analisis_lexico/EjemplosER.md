@@ -1,6 +1,6 @@
 # Ejemplos de expresiones regulares **en JFlex**.
 
-| Expresión                               | Lexema reconocido    |
+| Expresión                               | Reconoce...          |
 |-----------------------------------------|----------------------|
 | `[a-zA-Z]`                              | Letra                |
 | `[aeiouAEIOU]`                          | Vocal                |
