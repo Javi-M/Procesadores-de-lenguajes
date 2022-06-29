@@ -23,5 +23,5 @@ En caso de que un término tenga más de una definición, aparecerá varias vece
 | Símbolo director     | <!--TODO--> |
 | Sintaxis             | Conjunto de reglas que definen las secuencias correctas de los elementos de un lenguaje de programación. |
 | Tabla de símbolos    | <!--TODO--> |
-| Token                | <!--TODO--> |
+| Token                | Es una entidad primaria; la mínima unidad léxica con "significado". |
 | Parse                | Secuencia ordenada de las reglas aplicadas para construir un árbol sintáctico de una cadena. _Será una secuencia de números que harán referencia a las reglas de una gramática_. |
