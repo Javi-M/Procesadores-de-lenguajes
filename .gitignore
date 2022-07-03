@@ -5,7 +5,7 @@ Yylex.java
 *.class
 *.zip
 
-/rmv-aux
-/rmv-aux/*
+rmv-aux
+rmv-aux/*
 
 ll1-sent/*
