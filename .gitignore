@@ -1,7 +1,5 @@
 Yylex.java
 
-
-
 *.class
 *.zip
 
@@ -11,9 +9,6 @@ Analisis_lexico/rmv/rmv-aux/*
 
 
 ########### ARCHIVOS IGNORADOS DE ANALISIS SINTACTICO
-Analisis_sintactico/LL1-sent-WHILE/Lex.lex
-Analisis_sintactico/LL1-sent-WHILE/Yytoken.java
-Analisis_sintactico/LL1-sent-WHILE/prog?.in
-Analisis_sintactico/LL1-sent-WHILE/prog?.out
+# Patrones no funciona?
 
 
