@@ -5,8 +5,15 @@ Yylex.java
 *.class
 *.zip
 
-rmv-aux
-rmv-aux/*
+########### ARCHIVOS IGNORADOS DE ANALISIS LEXICO
+Analisis_lexico/rmv/rmv-aux
+Analisis_lexico/rmv/rmv-aux/*
 
-**/LL1-sent-WHILE/*
-!**/LL1-sent-WHILE/Parser.java
+
+########### ARCHIVOS IGNORADOS DE ANALISIS SINTACTICO
+Analisis_sintactico/LL1-sent-WHILE/Lex.lex
+Analisis_sintactico/LL1-sent-WHILE/Yytoken.java
+Analisis_sintactico/LL1-sent-WHILE/prog?.in
+Analisis_sintactico/LL1-sent-WHILE/prog?.out
+
+
