@@ -1,5 +1,0 @@
-axioma -> listaSent EOF
-listaSent -> sent listaSent
-sent -> IDENT IGUAL var PYC
-var -> IDENT
-listaSent ->
