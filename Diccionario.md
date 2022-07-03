@@ -19,7 +19,7 @@ En caso de que un término tenga más de una definición, aparecerá varias vece
 | Lexema               | 2. Secuencia de caracteres que es instancia de un _token_ |
 | $LL(1)$              | Left to right, Left most, 1 symbol. |
 | Reducción            | Operación (durante el análisis sintáctico) de sustituir una subcadena de nodos por un símbolo no terminal (metanotación) común a toda la subcadena. | 
-| $SIGUIENTE(A)$       | Conjunto de símbolos terminales que pueden aparecer inmediatamente a la derecha del símbolo A en cualquier forma sentencial que sea posible generar a partir de la gramática._Nota: A es un símbolo no terminal._ |
+| $SIGUIENTE(A)$       | Conjunto de símbolos terminales que pueden aparecer inmediatamente a la derecha del símbolo A en cualquier forma sentencial que sea posible generar a partir de la gramática. _Nota: A es un símbolo no terminal._ |
 | Símbolo director     | <!--TODO--> |
 | Sintaxis             | Conjunto de reglas que definen las secuencias correctas de los elementos de un lenguaje de programación. |
 | Tabla de símbolos    | <!--TODO--> |

@@ -1,4 +1,7 @@
 Yylex.java
-Yylex.class
-*.class
+
 /rmv-aux
+/rmv-aux/*
+
+*.class
+*.zip
