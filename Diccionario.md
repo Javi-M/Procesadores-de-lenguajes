@@ -24,4 +24,5 @@ En caso de que un término tenga más de una definición, aparecerá varias vece
 | Sintaxis             | Conjunto de reglas que definen las secuencias correctas de los elementos de un lenguaje de programación. |
 | Tabla de símbolos    | <!--TODO--> |
 | Token                | Es una entidad primaria; la mínima unidad léxica con "significado". |
+| Traductor 		   | Programa que traduce o convierte desde un texto o programa escrito en un lenguaje fuente hasta un texto o programa equivalente escrito en un lenguaje destino produciendo, si cabe, mensajes de error. |
 | Parse                | Secuencia ordenada de las reglas aplicadas para construir un árbol sintáctico de una cadena. _Será una secuencia de números que harán referencia a las reglas de una gramática_. |
