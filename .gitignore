@@ -8,4 +8,5 @@ Yylex.java
 rmv-aux
 rmv-aux/*
 
-**/ll1-sent/*
+**/LL1-sent-WHILE/*
+!**/LL1-sent-WHILE/Parser.java
