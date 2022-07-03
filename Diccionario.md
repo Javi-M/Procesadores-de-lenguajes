@@ -1,4 +1,5 @@
-Las definiciones están basadas en los apuntes, y responden al uso que se hace de los términos en la asignatura. Un término no tiene por qué ser una palabra.
+Las definiciones están basadas en los apuntes, internet y en el libro _Compiladores_, de Sergio Gálvez Rojas y Miguel Ángel Morata Mata.
+Las definiciones responden al uso que se hace de los términos en la asignatura. 
 
 En caso de que un término tenga más de una definición, aparecerá varias veces:
 |         |                    |
@@ -6,7 +7,7 @@ En caso de que un término tenga más de una definición, aparecerá varias vece
 | Palabra | 1. Una definicion  |  
 | Palabra | 2. Otra definicion |
 
-> El término _glosario_ es más adecuado que el de diccionario
+> El término _glosario_ es más adecuado que el de _diccionario_
   
 # Glosario
 | Término              | Definición  |
