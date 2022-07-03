@@ -8,4 +8,4 @@ Yylex.java
 rmv-aux
 rmv-aux/*
 
-ll1-sent/*
+**/ll1-sent/*
