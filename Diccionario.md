@@ -12,6 +12,7 @@ En caso de que un término tenga más de una definición, aparecerá varias vece
 | Término              | Definición |
 |----------------------|------------|
 | $CABECERA(\alpha)$   | Conjunto de símbolos terminales que pueden aparecer a la izquierda (primer símbolo) en alguna forma sentencial derivada de $\alpha$. |
+| Compilador		   | Es aquel traductor que tiene como entrada una sentencia en lenguaje formal y como salida tiene un fichero ejecutable (traducción alto nivel -> código máquina). |
 | Derivación derecha   | <!--TODO--> |
 | Derivación izquierda | <!--TODO--> |
 | Forma sentencial     | Se llama forma sentencial de una gramática a una derivación de la misma (es decir a cualquier estado intermedio en la formación de las cadenas del lenguaje. Puede contener símbolos terminales y no terminales). |
@@ -26,3 +27,7 @@ En caso de que un término tenga más de una definición, aparecerá varias vece
 | Token                | Es una entidad primaria; la mínima unidad léxica con "significado". |
 | Traductor 		   | Programa que traduce o convierte desde un texto o programa escrito en un lenguaje fuente hasta un texto o programa equivalente escrito en un lenguaje destino produciendo, si cabe, mensajes de error. |
 | Parse                | Secuencia ordenada de las reglas aplicadas para construir un árbol sintáctico de una cadena. _Será una secuencia de números que harán referencia a las reglas de una gramática_. |
+
+
+
+
