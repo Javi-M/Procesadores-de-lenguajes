@@ -1,6 +1,7 @@
 Yylex.java
 
 *.class
+*.java~
 *.zip
 
 ########### ARCHIVOS IGNORADOS DE ANALISIS LEXICO

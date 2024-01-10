@@ -1,148 +1,172 @@
+/* No hay tratamiento si hay errores en el script donde se sutituyen variables.
+se ignoran dichos lexemas */
 
 /* Vacío */
 
 %%
 
-VarId			= [a-zA-Z_][a-zA-Z0-9_]*
-Value		  = [a-zA-Z][a-zA-Z0-9_]*
-Special  	= [\".]
-EndOfCommand			= ";" | \r\n | [\r\n\u2028\u2029\u000B\u000C\u0085]
+%int
 
+
+EOL               = [\r\n\u2028\u2029\u000B\u000C\u0085]
+EndOfInstruction  = [$|;{:EOL:}]
+Special           = [.]
+VarId			        = [a-zA-Z_][a-zA-Z0-9_]*
+Value             = [a-zA-Z][a-zA-Z0-9_]*
+
+/* id de varibale y su valor que se insertaran en la Tabla de Simbolos */
 %{
-	String  variable = "";
-	String  value    = "";
-	void resetValues(){
-		variable = "";
-		value    = "";
-	}
+	String  constructingVariable = "";
+	String  constructingValue    = "";
 %}
 
-%standalone
-
-%xstate READING_SIMPLE_VALUE, READING_COMPLEX_VALUE, READING_COMMAND
+%xstate YYINITIAL, READING_SIMPLE_VALUE, READING_COMPLEX_VALUE, READING_COMMAND
 
 %%
 
-/* Yyinitial: cuando se empieza a leer un nuevo comando */
+/* Yyinitial: cuando se empieza a leer una nueva instruccion */
+<YYINITIAL>
+{
 {VarId}=\"		    {
-										System.out.println("Empieza READING_COMPLEX_VALUE");
-                    rmv.printLineText = false;
-										variable = yytext().substring(0, yytext().length()-2);
-										yybegin(READING_COMPLEX_VALUE);
-										return 1;
-									}
-
-{VarId}=					{
-                    System.out.println("Empieza READING_SIMPLE_VALUE");
-                    
-                    rmv.printLineText = false;
-										variable = yytext().substring(0, yytext().length()-1);
-										yybegin(READING_SIMPLE_VALUE);
-										return 1;
-									}
-
-/* Otros comandos bash. 2 opciones: sustituir $varIds  o no (dentro de comillas) */
-.                 {
-                    System.out.println("Empieza READING_COMMAND");
-                    
-                    rmv.printLineText = false;
-                    rmv.lineText.concat(yytext());
-                    yybegin(READING_COMMAND);
-                    return 1;
-                  }	
-
-{EndOfCommand}   	{ resetValues(); }
-
-
-
-<READING_SIMPLE_VALUE> {
-\${VarId}         { 
-                    value = TablaSimbolos.get(yytext());
-                    TablaSimbolos.put(variable, value);
-                    resetValues();
-                    yybegin(YYINITIAL);
-                    return 1;
-                  }
-                  
-{Value}           {
-                    TablaSimbolos.put(variable, yytext());
-                    resetValues();
-                    yybegin(YYINITIAL);
-                    rmv.printLineText = false;
-                    return 1;
-                  }
-                  
-{EndOfCommand}    { 
-                    yybegin(YYINITIAL); 
-                    return 1;
+                    constructingVariable = yytext().substring(0, yytext().length()-2);
+                    yybegin(READING_COMPLEX_VALUE);
+                    return Token.COMPLEX_VAR_ID;
                   }
 
-/* Espacios en blanco, tabulaciones u otras cosas irrelevantes */
-.                 {return 1;}
+{VarId}=					 {
+                    constructingVariable = yytext().substring(0, yytext().length()-1);
+                    yybegin(READING_SIMPLE_VALUE);
+                    return Token.SIMPLE_VAR_ID;
+                   }
 
+{EndOfInstruction}  {
+                      constructingValue    = "";
+                      constructingVariable = "";
+                      return Token.EOI;
+                    }
+
+.                   {
+                      rmv.lineText.concat(yytext());
+                      yybegin(READING_COMMAND);
+                      return Token.OTHER;
+                    }	
+
+[^] {}
 }
 
 
-<READING_COMPLEX_VALUE>{
-	/* Llamada a variable: buscar en TAS y sustituir */
-	\${VarId} 				{  
-	                     System.out.println("Reading complex value -> varId" + yytext());
-	                     value.concat(TablaSimbolos.get(yytext()));
-	                     return 1;
-	                  }
-	
-	/* Caracter especial a incluir literalmente */
-	\\{Special}       { // Incluir solamente el caracter especial y no el backslash
-	                    System.out.println("Reading complex value -> Special: " + yytext());
-											value.concat(yytext().substring(1, yytext().length()));
-											return 1;
-										}
 
-  /* Fin de lectura del valor */
-  \"                {
-                      TablaSimbolos.put(variable, value);
-                      resetValues();
-                      return 1;
-                    } 
 
-	/* Cualquier otro caracter: espacios, backslash, etc. */
-	.									{
-											value.concat(yytext());
-											return 1;
-										}				
- 								
-	{EndOfCommand}    {
-                     yybegin(YYINITIAL);
-                     return 1;
+<READING_SIMPLE_VALUE>
+{
+\${VarId}           { 
+                      String value = TablaSimbolos.get(yytext());
+                      TablaSimbolos.put(yytext(), value);
+                      yybegin(YYINITIAL);
+                      return Token.SIMPLE_VALUE;
                     }
+                  
+{Value}             {
+                      TablaSimbolos.put(constructingVariable, yytext());
+                      constructingVariable = "";
+                      yybegin(YYINITIAL);
+                      return Token.SIMPLE_VALUE;
+                    }
+                  
+{EndOfInstruction}  {
+                      constructingVariable = "";
+                      constructingValue    = "";
+                      yybegin(YYINITIAL); 
+                      return Token.EOI;
+                    }
+
+/* Cualquier otra cosa en este estado es irrelevante */
+.                   {
+                      return Token.OTHER;
+                    }
+
+[^] {}
+}
+
+
+<READING_COMPLEX_VALUE>
+{
+/* Llamada a variable: buscar en TS y sustituir */
+\${VarId} 				  {
+                      constructingValue.concat(TablaSimbolos.get(yytext()));
+                      return Token.OTHER;
+                    }
+
+/* Caracter especial a incluir literalmente NO TRATADO 
+  (falta de especificacion en el enunciado) */
+/* En su lugar: añadir cualquier caracter verbatim */
+\\.                 { // Incluir el caracter y no el backslash reconocido
+                      constructingValue.concat(yytext().substring(1, yytext().length()));
+                      return Token.OTHER;
+                    }
+
+/* Fin de lectura del valor */
+\"                  {
+                      TablaSimbolos.put(constructingVariable, constructingValue);
+                      constructingValue = "";
+                      constructingVariable = "";
+                      yybegin(YYINITIAL);
+                      return Token.OTHER;
+                    }
+
+{EndOfInstruction}  {
+                      yybegin(YYINITIAL);
+                      return Token.EOI;
+                    }
+
+/* Cualquier otra acosa: incluir tal cual */
+.	  			          {
+                      constructingValue.concat(yytext());
+                      return 1;
+                    
+                    }
+[^] {}	
 }	
+
+
+
+
+
 
 /* Es decir, se lee otra cosa que no es una asignacion
 y por tanto se busca si hay que realizar sustituciones
 para construir la linea de texto para el .rmv */
-<READING_COMMAND>{
-	/* No hay sustituciones. Se añade literalmente todo */
-	"\"" [^\"]* "\""	{
-										 rmv.lineText.concat(yytext());
-										 return 1;
-										}
+<READING_COMMAND>
+{
+/* No hay sustituciones. Se añade literalmente todo */
+\" ~\"	            {
+                      rmv.lineText.concat(yytext());
+                      return Token.OTHER;
+                    }
 
 
-	/* Es posiblemente una variable de la TablaSimbolos */
-	\${VarId}					{
-										 rmv.lineText.concat(TablaSimbolos.get(yytext()));
-										 return 1;
-										}
-										
-	.                 {
-	                   rmv.lineText.concat(yytext());
-	                   return 1;
-	                  }						
-	                  			
-	{EndOfCommand}    {
-	                   rmv.printLineText = true;
-	                   resetValues();
-	                   yybegin(YYINITIAL);
-	                   return 1;
-	                  }
+/* Es posiblemente una variable de la TablaSimbolos */
+\${VarId}					  {
+                      rmv.lineText.concat(TablaSimbolos.get(yytext()));
+                      return Token.OTHER;
+                    }
+                  					
+                        
+{EndOfInstruction}  {
+                      rmv.printLineText = true;
+                      yybegin(YYINITIAL);
+                      return Token.EOI;
+                    }
+
+/* El resto de caracteres: incluir tal cual */
+.                   {
+                      rmv.lineText.concat(yytext());
+                      return Token.OTHER;
+                    }
+
+[^] {}
+
 }
+
+/* Otra cosa: ignorar */
+[^] {}
