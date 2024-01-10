@@ -2,27 +2,29 @@
 
 %%
 
+/* Indicacion de que no se usa la clase Yytoken */
 %int
 
-letra 		= [a-zA-Z]
-vocal 		= [aeiouAEIOU]
-consonante 	= [b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z]
-/*La diferencia de conjuntos {letra}--{vocal} da problemas. Mejor evitarlo.*/
-palabra 	= [a-zA-Z]+
+Letra 		 = [a-zA-Z]
+Vocal 		 = [aeiouAEIOU]
+Consonante = [bcdfghjjklmnpqrstvwxyzBCDFGHJKLMNPRSTVWXYZ]
+
+/* La diferencia de conjuntos {Letra}--{Vocal} da problemas. Mejor evitarlo.*/
+Palabra 	 = {Letra}+
 
 %%
 
-/* Tiene al menos dos vocales seguidas y termina en consonante */
-{palabra}{vocal}{vocal}{palabra}{consonante}+   	{cpv.c++;}
+/* Al menos 2 Vocales seguidas y termina en Vocal */
+{Palabra}? ({Vocal} | {Vocal}{Vocal}{Palabra}?) {Vocal}      {cpv.a++;}
 
-/* Al menos 2 vocales seguidas y termina en vocal */
-{palabra}{vocal}{vocal}{palabra}     			{cpv.a++;}
+/* No tiene 2 Vocales seguidas y termina en Vocal */
+({Vocal}? {Consonante}+)* {Vocal}                            {cpv.b++;}
 
-/* No tiene dos vocales seguidas y termina en consonante */
-{palabra}{consonante}							{cpv.d++;}
+/* Al menos dos vocales seguidas y termina en Consonante */
+{Palabra}? {Vocal}{Vocal}  {Palabra}? {Consonante}           {cpv.c++;}
 
-/* No tiene 2 vocales seguidas y termina en vocal */
-{palabra}{vocal}								{cpv.b++;}
+/* No tiene dos vocales seguidas y termina en Consonante */
+({Vocal}? {Consonante}+)+                                    {cpv.d++;}
 
-
-[^] 				{/*Ignorar*/}
+/*Ignorar*/
+[^] 				                                            {}

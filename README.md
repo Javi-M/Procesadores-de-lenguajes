@@ -13,5 +13,5 @@ El orden en el que avanza la asignatura es :
 
 | Sección             | Proyecto | Descripción | Puntuación actual (tests) |
 |:--------------------|:---------|:------------|:-------------------------:|
-| Análisis léxico     | cpv      |             |                           |
+| Análisis léxico | cpv | Clasificación de palabras según la distribución de las vocales | 100/100|
 | Análisis sintáctico 

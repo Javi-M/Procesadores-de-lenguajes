@@ -4,6 +4,8 @@ Yylex.java
 *.zip
 
 ########### ARCHIVOS IGNORADOS DE ANALISIS LEXICO
+Analisis_lexico/cpv/soneto.txt
+
 Analisis_lexico/rmv/rmv-aux
 Analisis_lexico/rmv/rmv-aux/*
 

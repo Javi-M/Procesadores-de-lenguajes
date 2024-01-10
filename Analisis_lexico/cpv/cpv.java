@@ -11,16 +11,15 @@ public class cpv {
 		if(args.length>0){
 			try{
 				Yylex lex = new Yylex(new FileReader(args[0]));
-				while (lex.yylex() != -1) {
-	                
-	            }
+				
+				while (lex.yylex() != Yylex.YYEOF) {}
+
 				System.out.println("A " + a);
 				System.out.println("B " + b);
 				System.out.println("C " + c);
 				System.out.println("D " + d);
-			} catch (IOException e){
-				
-			}
+
+			} catch (IOException e){}
 		}
 	}
 }
