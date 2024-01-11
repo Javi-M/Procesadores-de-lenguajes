@@ -1,7 +1,9 @@
 Yylex.java
 
 *.class
+*.in
 *.java~
+*.out
 *.zip
 
 ########### ARCHIVOS IGNORADOS DE ANALISIS LEXICO
@@ -12,6 +14,5 @@ Analisis_lexico/rmv/rmv-aux/*
 
 
 ########### ARCHIVOS IGNORADOS DE ANALISIS SINTACTICO
-# Patrones no funciona?
 
 

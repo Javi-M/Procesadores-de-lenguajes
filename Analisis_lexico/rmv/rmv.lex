@@ -28,33 +28,28 @@ Value             = [a-zA-Z][a-zA-Z0-9_]*
 <YYINITIAL>
 {
 /* Ignora los espacios iniciales */
-{WhiteSpace}+     {}
-
-{VarId}=\"		    {
-                    constructingVariable = yytext().substring(0, yytext().length()-2);
-                    yybegin(READING_COMPLEX_VALUE);
-                    return Token.COMPLEX_VAR_ID;
-                  }
-
-{VarId}=					 {
-                    constructingVariable = yytext().substring(0, yytext().length()-1);
-                    yybegin(READING_SIMPLE_VALUE);
-                    return Token.SIMPLE_VAR_ID;
-                   }
-
+{WhiteSpace}+       {}
+{VarId}=\"		      {
+                      constructingVariable = yytext().substring(0, yytext().length()-2);
+                      yybegin(READING_COMPLEX_VALUE);
+                      return Token.COMPLEX_VAR_ID;
+                    }
+{VarId}=					  {
+                      constructingVariable = yytext().substring(0, yytext().length()-1);
+                      yybegin(READING_SIMPLE_VALUE);
+                      return Token.SIMPLE_VAR_ID;
+                    }
 {EndOfInstruction}  {
                       constructingValue    = "";
                       constructingVariable = "";
                       return Token.EOI;
                     }
-
 .                   {
-                      rmv.lineText.concat(yytext());
+                      rmv.lineText += yytext();
                       yybegin(READING_COMMAND);
                       return Token.OTHER;
                     }	
-
-[^] {}
+[^]                 {}
 }
 
 
@@ -104,7 +99,7 @@ Value             = [a-zA-Z][a-zA-Z0-9_]*
   (falta de especificacion en el enunciado) */
 /* En su lugar: añadir cualquier caracter verbatim */
 \\.                 { // Incluir el caracter y no el backslash reconocido
-                      constructingValue.concat(yytext().substring(1, yytext().length()));
+                      constructingValue += yytext().substring(1, yytext().length());
                       return Token.OTHER;
                     }
 
@@ -124,9 +119,8 @@ Value             = [a-zA-Z][a-zA-Z0-9_]*
 
 /* Cualquier otra acosa: incluir tal cual */
 .	  			          {
-                      constructingValue.concat(yytext());
-                      return 1;
-                    
+                      constructingValue += yytext();
+                      return 1;   
                     }
 [^] {}	
 }	
@@ -143,14 +137,15 @@ para construir la linea de texto para el .rmv */
 {
 /* No hay sustituciones. Se añade literalmente todo */
 \" ~\"	            {
-                      rmv.lineText.concat(yytext());
+                      rmv.lineText += yytext();
                       return Token.OTHER;
                     }
 
 
 /* Es posiblemente una variable de la TablaSimbolos */
 \${VarId}					  {
-                      rmv.lineText.concat(TablaSimbolos.get(yytext()));
+                      rmv.lineText += TablaSimbolos.get(yytext());
+                      rmv.printLineText = true;
                       return Token.OTHER;
                     }
                   					
@@ -163,7 +158,8 @@ para construir la linea de texto para el .rmv */
 
 /* El resto de caracteres: incluir tal cual */
 .                   {
-                      rmv.lineText.concat(yytext());
+                      rmv.lineText += yytext();
+                      rmv.printLineText = true;
                       return Token.OTHER;
                     }
 
