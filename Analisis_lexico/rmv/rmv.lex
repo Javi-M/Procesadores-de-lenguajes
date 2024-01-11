@@ -7,7 +7,7 @@ se ignoran dichos lexemas */
 
 %int
 
-
+WhiteSpace        = " " | \t
 EOL               = [\r\n\u2028\u2029\u000B\u000C\u0085]
 EndOfInstruction  = [$|;{:EOL:}]
 Special           = [.]
@@ -27,6 +27,9 @@ Value             = [a-zA-Z][a-zA-Z0-9_]*
 /* Yyinitial: cuando se empieza a leer una nueva instruccion */
 <YYINITIAL>
 {
+/* Ignora los espacios iniciales */
+{WhiteSpace}+     {}
+
 {VarId}=\"		    {
                     constructingVariable = yytext().substring(0, yytext().length()-2);
                     yybegin(READING_COMPLEX_VALUE);
