@@ -17,7 +17,6 @@ El orden en el que avanza la asignatura es :
 | Análisis sintáctico 
 
 ### En profundidad
-_Descripción ejercicio a ejercicio (ejercicio $\equiv$ proyecto)_.
-* **Diccionario.md** contiene alguna definiciones útiles de saber para la asignatura. Las definiciones se adaptan al uso que hace la asignatura.
-* **/Analisis_lexico/EjemplosER.md**: contiene ejemplos de expresiones regulares en JFlex
-
+_Descripción ejercicio a ejercicio (ejercicio_ $\equiv$ _proyecto)_.
+- **Diccionario.md** contiene alguna definiciones útiles de saber para la asignatura. Las definiciones se adaptan al uso que hace la asignatura.
+- **/Analisis_lexico/EjemplosER.md**: contiene ejemplos de expresiones regulares en JFlex
