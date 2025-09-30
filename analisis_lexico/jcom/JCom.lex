@@ -22,7 +22,10 @@ AllButSpaces = [^ \s\t\n\r]
 %%
 
 <YYINITIAL> {
+    '.'     { /* Ignorar char en Java: ", *, etc */}
+
     \"      { yybegin(READING_STR); }
+    
     \/\/    { yybegin(DOUBLE_SLASH_COMMENT); }
 
     \/\*    { yybegin(ASTERISK_COMMENT); }
@@ -33,6 +36,7 @@ AllButSpaces = [^ \s\t\n\r]
 }
 
 <READING_STR> {
+    \\.    { /* Ignorar caracteres escapados */ }
     \"      { yybegin(YYINITIAL); }
     [^]     { /* ignorar otros caracteres */ }
 }
