@@ -36,18 +36,15 @@ Y debe poder ejecutarse con:
 java wc archivo.txt
 ```
 
+## JCom
+Contar los caracteres dentro de cada tipo de comentario en Java:
+`//`, `/* */` y `/** */` (sin contar los slashes y asteriscos de los propios
+comentarios).
+
+
 ## rmw
 (JFlex y Java) Programa capaz de sustituir todas las variables de un script del Shell (.sh) por su valor.
 
-
-# Sobre el Lexer generado
-Tras que JFlex interprete el archivo *.lex, genera una clase que por defecto se llama Yylex.java, a la que querremos acceder desde el método `main`. 
-
-Los objetos de esta clase tienen los siguentes métodos:
-* `String yytext()`: Devuelve el lexema que se acaba de reconocer (el texto que ha hecho _match_ con una ER).
-* `int yylength()`: 
-* `char yycharat(int pos)`: 
-* `int yylex()`: Devuelve un entero, correspondiente al token del lexema reconocido.
 
 
 

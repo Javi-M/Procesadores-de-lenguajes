@@ -5,11 +5,19 @@ El orden en el que avanza la asignatura es :
 2. Análisis sintáctico
 3. Análisis semántico
 
-## Contenidos
-> La mayoría de los ejercicios requieren de código que se encuentra en la 
-> asignatura. 
+> En muchos ejercicios hace falta código extra de la asignatura. Por lo general,
+> pondré la parte que corresponde como solución (archivos a entregar).
 
-### Descripción breve de contenidos
+# Índice de contenidos
+- [analisis_lexico/](analisis_lexico/)
+  - [Apuntes-JFlex.md](analisis_lexico/Apuntes-JFlex.md)
+  - [EjemplosER.md](analisis_lexico/EjemplosER.md) Ejemplos de expresiones regulares en JFlex
+  - cpv/
+  - jcom/
+  - rmv/
+- analisis_sintactico/
+
+# Descripción breve de los proyectos/ejercicios
 | Sección             | Proyecto | Descripción | Puntuación actual (tests) |
 |:--------------------|:---------|:------------|:-------------------------:|
 | Análisis léxico | cpv | Clasificación de palabras según la distribución de las vocales | 100% |
