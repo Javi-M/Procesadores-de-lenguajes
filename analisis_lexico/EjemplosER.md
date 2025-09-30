@@ -1,4 +1,4 @@
-# Ejemplos de expresiones regulares **en JFlex**.
+# Ejemplos de expresiones regulares **en JFlex**
 
 | Expresión                               | Reconoce...          |
 |-----------------------------------------|----------------------|
@@ -13,15 +13,4 @@
 | `(.\|\n\|\r)*`                          | Cadena ASCII (del 1 al 127) |
  
 
-# Caracteres especiales
-> Para usarlos literalmente, sin su significado especial, hay que poner `\`. Para reconocer el lexema \ usaríamos `\\`.
-* `*` `+` `?` `|` `[` `]` `(` `)` `"` `\` `.` `{` `}` `^` `$` `/` `<`  `>`
-* En corchetes: `-` `\` `^`	
-
-| Caracter | Fuera de corchetes                         | En corchetes [ ]    |
-|----------|--------------------------------------------|---------------------|
-| `.`      | Cualquier caracter excepto el fin de linea |                     |
-| `$`      | Fin de línea 								|                     |
-| 
- 
 
