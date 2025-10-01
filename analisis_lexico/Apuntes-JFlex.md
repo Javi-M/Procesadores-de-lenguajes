@@ -96,13 +96,13 @@ Meta-caracteres (caracteres especiales): `|` `(` `)` `{` `}` `[` `]` `<` `>` `\`
 
 Sean `a` y `b` expresiones regulares. Semántica en las RE:
 - Operadores unarios postfijos: 
-  - `a*`: cero o más repeticiones 
-  - `a+`
-  - `a?`
-  - `a{n}` (repetición) equivale a la concatenación n-veces de `a`.
-  - `a{n,m}` "al menos n veces, como mucho m veces".
+  - `a*` <br> cero o más repeticiones 
+  - `a+` <br> una o más repeticiones
+  - `a?` <br> cero o una repetición
+  - `a{n}` <br> (repetición) equivale a la concatenación n-veces de `a`.
+  - `a{n,m}` <br> "al menos n veces, como mucho m veces".
 - Operadores unarios prefijos:
-  - `!a`
+  - `!a` (no recomendable)
   - `~a` (upto)
 - Concatenación: `a b`
 - Unión: `a | b`
