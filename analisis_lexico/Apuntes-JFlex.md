@@ -3,6 +3,7 @@
   - [*User Code*](#user-code)
   - [*Options and Declarations*](#options-and-declarations)
   - [*Lexical Rules*](#lexical-rules)
+    - [Cómo el input es reconocido (*matched*)](#cómo-el-input-es-reconocido-matched)
 - [El Lexer generado](#el-lexer-generado)
 
 
@@ -90,16 +91,51 @@ Clases predefinidas:
 - `\w` `\W`
 - `.`
 
-Meta-caracteres (caracteres especiales): `\| ( ) { } [ ] < > \ . * + ? ^ $ / . " ~ !`
+Meta-caracteres (caracteres especiales): `|` `(` `)` `{` `}` `[` `]` `<` `>` `\` 
+    `.` `*` `+` `?` `^` `$` `/` `.` `"` `~` `!`
+
+Sean `a` y `b` expresiones regulares. Semántica en las RE:
+- Operadores unarios postfijos: 
+  - `a*`: cero o más repeticiones 
+  - `a+`
+  - `a?`
+  - `a{n}` (repetición) equivale a la concatenación n-veces de `a`.
+  - `a{n,m}` "al menos n veces, como mucho m veces".
+- Operadores unarios prefijos:
+  - `!a`
+  - `~a` (upto)
+- Concatenación: `a b`
+- Unión: `a | b`
+
+Acciones: 
+```
+expression1 |
+expression2 |
+expression3 { some action }
+```
+
+> Muy interesante el capítulo 4.3.1. Syntax, del manual JFlex.
+
+### Cómo el input es reconocido (*matched*)
+- *Longest match rule*
+- Si dos ER reconocen un lexema (misma longitud), se utiliza la que aparezca antes.
+- El estado léxico debe estar activo. Por defecto empieza en `YYINITIAL`. 
 
 # El Lexer generado
 Por defecto es `Yylex.java`. Tras que JFlex interprete el archivo `*.lex` o `*.flex`, genera una clase que 
 por defecto se llama `Yylex.java`. Esta es la clase del *scanner*. 
 
-Los objetos de esta clase tienen los siguentes métodos:
-* `int yylex()`: *Scanning method*. Devuelve un entero, correspondiente al token del lexema 
-    reconocido.
-* `String yytext()`: Devuelve el lexema que se acaba de reconocer (*match*).
-* `int yylength()`: 
-* `char yycharat(int pos)`
-
+Los objetos de esta clase tienen los siguentes métodos y atributos:
+- `int yylex()` <br> *Scanning method*.
+- `String yytext()` <br> Devuelve el lexema reconocido.
+- `int yylength()` <br> Devuelve la longitud del lexema reconocido.
+- `char yycharat(int pos)` <br> Devuelve el caracter en la posición `pos` del 
+    lexema reconocido (empezando por 0):
+- `int yybegin(LEXICAL_STATE)` <br> Cambia el estado léxico. Obviamente es útil
+    dentro del scanner.
+- `int yystate()` <br> Devuelve el estado léxico actual.
+- `void yypushback(int number)` <br> Push `number` caracteres del texto 
+    reconocido de vuelta al input stream. Serán leídos de nuevo.
+- `int yyline` <br> Línea actual, empezando por 0. Hace falta `%line`.
+- `int yychar` <br> Hace falta `%char`
+- `int yycolumn` <br> Hace falta la directiva `%column`
