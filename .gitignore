@@ -1,3 +1,5 @@
+
+# Los lexers son generados a partir de archivos .flex o .lex
 Yylex.java
 
 *.class
@@ -6,13 +8,7 @@ Yylex.java
 *.out
 *.zip
 
-########### ARCHIVOS IGNORADOS DE ANALISIS LEXICO
-Analisis_lexico/cpv/soneto.txt
 
+Analisis_lexico/cpv/soneto.txt
 Analisis_lexico/rmv/rmv-aux
 Analisis_lexico/rmv/rmv-aux/*
-
-
-########### ARCHIVOS IGNORADOS DE ANALISIS SINTACTICO
-
-
